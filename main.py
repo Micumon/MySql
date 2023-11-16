@@ -45,6 +45,7 @@ my_cursor = mydb.cursor()
 # my_cursor.execute(update_quarry)
 # mydb.commit()
 
+
 # my_cursor.execute("SELECT * FROM users ORDER BY name DESC LIMIT 3 OFFSET 1")
 # result = my_cursor.fetchall()
 # for row in result:
