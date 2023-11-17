@@ -2,8 +2,10 @@ from typing import Dict
 
 
 class NewColumns:
-    def __init__(self):
+    def __init__(self, table_name):
         self.columns: Dict[str, ColumnProperties] = {}
+        self.__table = table_name
+
 
     def new_column(self, column_name):
         return ColumnProperties(self, column_name)
