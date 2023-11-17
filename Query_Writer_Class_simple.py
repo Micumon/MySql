@@ -52,8 +52,14 @@ class NewColumns:
 
     def __build_columns_statement(self):
         statement = f"CREATE TABLE {self.__table_name} (\n"
+        first_elem = True
         for column_name in self.columns:
-            statement += f"{column_name} {self.columns[column_name].column_properties},\n"
+            if first_elem:
+                statement += f"{column_name} {self.columns[column_name].column_properties}"
+                first_elem = False
+            else:
+                statement += f",\n{column_name} {self.columns[column_name].column_properties}"
+
         statement += ")"
         return statement
 
@@ -78,7 +84,7 @@ class ColumnProperties:
 
     @property
     def column_properties(self):
-        return self.__column_properties
+        pass
 
     @column_properties.getter
     def column_properties(self):
@@ -94,8 +100,18 @@ class ColumnProperties:
 
         return statement
 
-    def varchar_type(self, char_number):
-        self.column_type = f"varchar({str(char_number)})"
+    def varchar_type(self, length=0):
+        if length == 0:
+            self.column_type = f"VARCHAR"
+        else:
+            self.column_type = f"VARCHAR({str(length)})"
+        return self
+
+    def integer_type(self, length=0):
+        if length == 0:
+            self.column_type = f"INTEGER"
+        else:
+            self.column_type = f"INTEGER({str(length)})"
         return self
 
     def unique_true(self):
@@ -112,4 +128,3 @@ class ColumnProperties:
 
     def end_column(self) -> NewColumns:
         return self.__column_obj
-
