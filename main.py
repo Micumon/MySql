@@ -1,5 +1,5 @@
 import mysql.connector
-from Query_Writer_Class import *
+from Query_Writer_Class_simple import *
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -15,12 +15,11 @@ my_cursor = mydb.cursor()
 # my_cursor.execute("show databases")
 
 # my_cursor.execute(
-# """CREATE TABLE users (
+# """CREATE TABLE users_3 (
 # name varchar(40),
 # email varchar(40),
 # age integer(3),
-# user_id integer AUTO_INCREMENT,
-# PRIMARY KEY (user_id)
+# user_id integer
 # )"""
 # )
 
