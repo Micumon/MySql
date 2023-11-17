@@ -1,17 +1,19 @@
-class NewColumns:
+from typing import Dict
 
+
+class NewColumns:
     def __init__(self):
-        self.columns = {}
+        self.columns: Dict[str, ColumnProperties] = {}
 
     def new_column(self, column_name):
-        self.columns[column_name] = ColumnProperties(self)
-        return ColumnProperties(self)
+        return ColumnProperties(self, column_name)
 
 
 class ColumnProperties:
 
-    def __init__(self, column_obj):
+    def __init__(self, column_obj, column_name):
         self.__column_obj = column_obj
+        self.__column_obj.columns[column_name] = self
         self.column_type = ""
         self.unique = False
         self.primary_k = False
