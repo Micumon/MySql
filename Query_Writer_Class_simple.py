@@ -100,18 +100,19 @@ class ColumnProperties:
 
         return statement
 
-    def varchar_type(self, length=0):
+    def __column_typ_setter(self, type_of, length=0):
         if length == 0:
-            self.column_type = f"VARCHAR"
+            self.column_type = f"{type_of}"
         else:
-            self.column_type = f"VARCHAR({str(length)})"
+            self.column_type = f"{type_of}({str(length)})"
+        return self
+
+    def varchar_type(self, length=0):
+        self.__column_typ_setter("VARCHAR", length=length)
         return self
 
     def integer_type(self, length=0):
-        if length == 0:
-            self.column_type = f"INTEGER"
-        else:
-            self.column_type = f"INTEGER({str(length)})"
+        self.__column_typ_setter("INTEGER", length=length)
         return self
 
     def unique_true(self):
